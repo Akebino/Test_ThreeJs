@@ -11,8 +11,10 @@ DockerEngineをインストールしたコンソール環境(wsl2等)にて<br>
 dockerフォルダをカレントディレクトリにした状態で以下のコマンドを叩く<br>
 `docker-compose up -d --build`
 - `node install ~ `コマンドでThree.jsを含めた各種モジュールをインストール<br>
-モジュールの詳細は app/package.json ファイルの以下項目を参照
-  - dependencies
-  - devDependencies
+モジュールの詳細は app/package.json > dependencies, devDependencies 項目を参照してください
 
-- 環境構築後は以下の
+- `npm run build` コマンドで app/distフォルダにテストコードをビルド<br>
+
+- **※既存のWebServer, S3を使用する場合は、distフォルダを環境に応じて配置してください**<br>
+ビルド後の確認方法等は以下のツールを使用しました<br>
+https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb?hl=ja
