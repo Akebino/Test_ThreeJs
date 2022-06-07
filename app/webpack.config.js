@@ -1,14 +1,11 @@
+const path = require('path');
+
 module.exports = {
-    // development に設定するとソースマップ有効でJSファイルが出力される
-    mode: 'production',
-    watch: true,
-    watchOptions: {
-        poll: 1000, //毎秒変更を確認します
-    },
+    mode: 'development',
     //devtool: "source-map",
     entry: './dev/src/page/index.ts',
     output: {
-        path: `${__dirname}/dist`,
+        path: `${__dirname}/dev/public`,
         filename: 'main.js'
     },
 
@@ -18,8 +15,16 @@ module.exports = {
           // 拡張子 .ts の場合
           test: /\.ts$/,
           // TypeScript をコンパイルする
-          use: 'ts-loader',
+          use: ['ts-loader'],
         },
+        {
+          test:/\.(css|scss|sass)$/,
+          use:['style-loader','css-loader']
+        },
+        {
+          test: /\.(png|jpg|gif)$/,
+          use:['url-loader']
+        }
       ],
     },
     resolve: {
@@ -29,4 +34,14 @@ module.exports = {
         '.js'
       ],
     },
+    devServer: {
+      static: {
+        directory: path.resolve(__dirname, "./dist"),
+      },
+      open: true,
+      port: 8081,
+      hot: true,
+      compress: true,
+      historyApiFallback: true,
+    }
   };

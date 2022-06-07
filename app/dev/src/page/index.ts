@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
+//import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import { JSDOM }    from 'jsdom';
 
 import { Vector3 } from "three";
@@ -7,7 +7,6 @@ import { Renderer } from "../components/Renderer"
 import { Camera } from "../components/Camera"
 import { Scene } from "../components/Scene"
 import { Loader } from "../components/Loader"
-const { document } = (new JSDOM(`...`)).window;
 
 if (typeof window !== 'undefined' &&
 	typeof document !== 'undefined') {
@@ -29,6 +28,8 @@ const targetName: string = "モンキー";
 
 function init()
 {
+	console.log("Hello World");
+
 	// canvasをbodyに追加
 	document.body.appendChild(renderer.domElement);
 
@@ -53,7 +54,6 @@ function init()
 		console.log("add object %s.", obj.name);
 		scene.add(obj);
 	});
-
 
 	// マイフレーム更新処理
 	const tick = () => {

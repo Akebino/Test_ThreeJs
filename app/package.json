@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "watch": "browser-sync start --files '*/*.html' --config bs-config.js"
+    "watch": "webpack serve"
   },
   "keywords": [],
   "author": "",
@@ -14,14 +14,18 @@
     "@types/jsdom": "^16.2.14",
     "@types/node": "^17.0.39",
     "@types/three": "^0.141.0",
-    "browser-sync": "^2.27.10",
-    "jsdom": "^19.0.0",
+    "bufferutil": "^4.0.6",
+    "css-loader": "^6.7.1",
     "npm": "^8.12.1",
     "npm-run-all": "^4.1.5",
+    "style-loader": "^3.3.1",
     "three": "^0.141.0",
     "ts-node": "^10.8.1",
     "ts-node-dev": "^2.0.0",
-    "watch": "^0.13.0"
+    "url-loader": "^4.1.1",
+    "utf-8-validate": "^5.0.9",
+    "watch": "^0.13.0",
+    "webpack-dev-server": "^4.9.2"
   },
   "devDependencies": {
     "ts-loader": "^9.3.0",
