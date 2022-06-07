@@ -1,45 +1,40 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
+import { JSDOM }    from 'jsdom';
+
 import { Vector3 } from "three";
+import { Renderer } from "../components/Renderer"
+import { Camera } from "../components/Camera"
+import { Scene } from "../components/Scene"
+import { Loader } from "../components/Loader"
+const { document } = (new JSDOM(`...`)).window;
 
-// ロード後処理
-window.addEventListener("DOMContentLoaded", init)
+if (typeof window !== 'undefined' &&
+	typeof document !== 'undefined') {
+	window.addEventListener("DOMContentLoaded", init)
+}
 
-const VIEWPORT_W = window.innerWidth;
-const VIEWPORT_H = window.innerHeight;
-const renderer = new THREE.WebGLRenderer();
-const camera = new THREE.PerspectiveCamera(
+
+const renderer = new Renderer();
+const camera = new Camera(
 	45,
-	VIEWPORT_W / VIEWPORT_H,
+	window.innerWidth / window.innerHeight,
 	1,
 	10000
 );
-const scene = new THREE.Scene();
+const scene = new Scene();
 const targetName: string = "モンキー";
 //const controls = new OrbitControls(camera, renderer.domElement);
 
 
 function init()
 {
-	//// レンダラーを作成
-	//const renderer = new THREE.WebGLRenderer();
-	// レンダラーのサイズを設定
-	renderer.setSize(VIEWPORT_W, VIEWPORT_H);
-	renderer.setPixelRatio(window.devicePixelRatio);
 	// canvasをbodyに追加
 	document.body.appendChild(renderer.domElement);
-
-	scene.background = new THREE.Color( 0xa4f5d9 );
-
-	camera.position.set(0, 2, 10)
-	camera.rotateX(-0.2);
 
 	//// 滑らかにカメラコントローラーを制御する
 	//controls.enableDamping = true;
 	//controls.dampingFactor = 0.2;
-
-	InitHelper();
 
 	// 平行光源を生成
 	const light = new THREE.DirectionalLight(0xffffff);
@@ -50,7 +45,7 @@ function init()
 	AddEventObjectControl();
 
 	// モデルをロード
-	const loader = new GLTFLoader();
+	const loader = new Loader();
 	loader.load("./resource/test.gltf", function(data){
 		const gltf = data;
 		const obj = gltf.scene;
@@ -58,7 +53,6 @@ function init()
 		console.log("add object %s.", obj.name);
 		scene.add(obj);
 	});
-
 
 
 	// マイフレーム更新処理
@@ -72,19 +66,9 @@ function init()
 		renderer.render(scene, camera);
 	};
 	tick();
-
-	//console.log("Hello World.");
 };
 
-function InitHelper()
-{
-	// グリッド表示
-	const gridHelper = new THREE.GridHelper(80, 50,0xffff00) 
-	scene.add(gridHelper);
-	// 軸表示
-	const axesHelper = new THREE.AxesHelper( 5 );
-	scene.add( axesHelper );
-}
+
 
 function AddEventObjectControl()
 {
@@ -96,7 +80,6 @@ function AddEventObjectControl()
 	renderer.domElement.addEventListener( 'mousemove', OnMouseMove, false );
 	renderer.domElement.addEventListener( 'mouseup', OnMouseUp, false );
 }
-
 
 
 const raycaster = new THREE.Raycaster();

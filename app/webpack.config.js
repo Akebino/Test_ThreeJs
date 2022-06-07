@@ -6,7 +6,7 @@ module.exports = {
         poll: 1000, //毎秒変更を確認します
     },
     //devtool: "source-map",
-    entry: './src/index.ts',
+    entry: './dev/src/page/index.ts',
     output: {
         path: `${__dirname}/dist`,
         filename: 'main.js'
