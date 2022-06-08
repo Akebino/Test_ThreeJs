@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
     mode: 'development',
@@ -34,10 +35,13 @@ module.exports = {
         '.js'
       ],
     },
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: path.join(__dirname, "dev/public/index.html"),
+        filename: "index.html",
+      }),
+    ],
     devServer: {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-      },
       static: {
         directory: path.join(__dirname, "./dev/public"),
       },
@@ -45,6 +49,15 @@ module.exports = {
       host: '0.0.0.0',
       port: 8081,
       hot: true,
-      watchFiles: ['.dev/**'],
+      liveReload: true,
+      watchFiles: {
+        paths: ['.dev/src/**/*'],
+        options: {
+          usePolling: true,
+        }
+      }
+    },
+    watchOptions: {
+      poll: 1000,
     }
   };
