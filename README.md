@@ -9,10 +9,11 @@
 - **※node.js環境がある場合は、こちらの手順は省略できます**<br>
 DockerEngineをインストールしたコンソール環境(wsl2等)にて<br>
 dockerフォルダをカレントディレクトリにした状態で以下のコマンドを叩く<br>
-`docker-compose up -d --build`
+`docker-compose up --build`<br>
 
-- `npm run build` コマンドで app/distフォルダにテストコードをビルド<br>
+- コンソール上で下記が流れた際はURLにアクセスしてください<br>
+　`<i> [webpack-dev-server] Loopback: URL`<br>
+※DockerfileのENTRYPOINTにて `npm run watch` を実行しております
 
-- **※既存のWebServer, S3を使用する場合は、distフォルダを環境に応じて配置してください**<br>
-ビルド後の確認方法等は以下のツールを使用しました<br>
-https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb?hl=ja
+- app/dev/ 以下が変更された場合、ホットリロードが走るので<br>
+ブラウザをつけた状態で開発可能です。

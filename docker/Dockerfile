@@ -9,3 +9,4 @@ RUN apt-get install -y nodejs npm
 
 ADD package.json .
 RUN npm install
+ENTRYPOINT npm run watch
