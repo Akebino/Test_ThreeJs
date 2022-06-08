@@ -1,6 +1,5 @@
 import * as THREE from "three";
 //import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
-import { JSDOM }    from 'jsdom';
 
 import { Vector3 } from "three";
 import { Renderer } from "../components/Renderer"

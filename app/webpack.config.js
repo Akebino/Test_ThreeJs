@@ -39,14 +39,12 @@ module.exports = {
         'Access-Control-Allow-Origin': '*',
       },
       static: {
-        directory: path.resolve(__dirname, "./dev/public"),
+        directory: path.join(__dirname, "./dev/public"),
       },
       open: true,
       host: '0.0.0.0',
       port: 8081,
       hot: true,
-      compress: true,
-      historyApiFallback: true,
       watchFiles: ['.dev/**'],
     }
   };
