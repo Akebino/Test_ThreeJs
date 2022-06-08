@@ -10,8 +10,6 @@
 DockerEngineをインストールしたコンソール環境(wsl2等)にて<br>
 dockerフォルダをカレントディレクトリにした状態で以下のコマンドを叩く<br>
 `docker-compose up -d --build`
-- `node install ~ `コマンドでThree.jsを含めた各種モジュールをインストール<br>
-モジュールの詳細は app/package.json > dependencies, devDependencies 項目を参照してください
 
 - `npm run build` コマンドで app/distフォルダにテストコードをビルド<br>
 
